@@ -12,6 +12,10 @@ function getDescriptorEntries(instance) {
 }
 
 exports.toObject = function toObject(input) {
+  if (!isNest(input)) {
+    return input;
+  }
+
   const normalKeys = Object.keys(input);
   const getterKeys = isPlainObject(input) ? [] :
     getDescriptorEntries(Object.getPrototypeOf(input))
@@ -20,8 +24,7 @@ exports.toObject = function toObject(input) {
 
   const output = {};
   [...normalKeys, ...getterKeys].forEach(key => {
-    const value = input[key];
-    output[key] = isNest(value) ? toObject(value) : value;
+    output[key] = toObject(input[key]);
   });
 
   return output;

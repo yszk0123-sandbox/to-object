@@ -27,7 +27,7 @@ class Bar2 extends Bar {
   }
 }
 
-const result = toObject(new Foo());
+const result = toObject([new Foo()]);
 console.log(JSON.stringify(result, null, 2));
 /*=>
 {
