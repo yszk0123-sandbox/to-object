@@ -1,7 +1,7 @@
 const { isPlainObject, isFunction, sortBy } = require('lodash');
 
 function isNest(o) {
-  return o != null && !Array.isArray(o)  && typeof o === 'object' && !isPlainObject(o);
+  return o != null && typeof o === 'object' && !isPlainObject(o);
 }
 
 function getDescriptorEntries(instance) {
