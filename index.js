@@ -19,7 +19,7 @@ exports.toObject = function toObject(input) {
   const normalKeys = Object.keys(input);
   const getterKeys = isPlainObject(input) ? [] :
     getDescriptorEntries(Object.getPrototypeOf(input))
-      .filter(([key, descriptor]) => key !== '__proto__' && typeof descriptor.get === 'function')
+      .filter(([key, descriptor]) => key !== '__proto__' && isFunction(descriptor.get))
       .map(([key]) => key);
 
   const output = {};
